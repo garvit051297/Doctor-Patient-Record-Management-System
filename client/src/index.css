@@ -117,3 +117,24 @@
     @apply font-sans antialiased bg-slate-50 text-foreground;
   }
 }
+
+/* Premium Animations and Glassmorphism */
+@keyframes animatedGradient {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.bg-animated-gradient {
+  background: linear-gradient(-45deg, #e0e7ff, #ffffff, #dbeafe, #f1f5f9);
+  background-size: 400% 400%;
+  animation: animatedGradient 12s ease infinite;
+}
+
+.dark .bg-animated-gradient {
+  background: linear-gradient(-45deg, #0f172a, #1e293b, #020617, #0f172a);
+}
+
+.glass-card {
+  @apply bg-white/70 dark:bg-slate-900/70 backdrop-blur-xl border border-white/40 dark:border-slate-800/60 shadow-[0_8px_32px_0_rgba(31,38,135,0.07)];
+}

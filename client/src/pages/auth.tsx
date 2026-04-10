@@ -51,11 +51,12 @@ export default function AuthPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 relative">
-      <Card className="w-full max-w-[440px] shadow-md border-slate-200 bg-white">
+    <div className="min-h-screen flex items-center justify-center p-4 relative bg-animated-gradient">
+      <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[bottom_1px_center] pointer-events-none" />
+      <Card className="w-full max-w-[440px] glass-card animate-in slide-in-from-bottom-8 fade-in duration-700 ease-out relative z-10">
         <CardHeader className="space-y-4 flex flex-col items-center text-center pt-10 pb-2">
-          <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-2">
-            <div className="w-8 h-8 border-2 border-primary rounded-lg rotate-45" />
+          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-2 shadow-inner">
+            <div className="w-8 h-8 border-[3px] border-primary rounded-lg rotate-45 transform transition-transform duration-700 hover:rotate-90" />
           </div>
           <div className="space-y-2">
             <CardTitle className="text-2xl font-bold tracking-tight text-slate-900">
@@ -75,21 +76,21 @@ export default function AuthPage() {
                 id="username"
                 type="text"
                 placeholder="Enter your username"
-                className="h-11 bg-slate-50 border-slate-200 focus:bg-white transition-all duration-200"
+                className="h-11 bg-white/50 border-slate-200/60 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all duration-300"
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
                 data-testid="input-username"
               />
             </div>
 
-            <div className="space-y-2">
+            <div className="space-y-2 group">
               <Label htmlFor="password" className="text-slate-600 font-medium">Password</Label>
               <div className="relative">
                 <Input
                   id="password"
                   type={showPassword ? "text" : "password"}
                   placeholder="********"
-                  className="h-11 bg-slate-50 border-slate-200 focus:bg-white transition-all duration-200 pr-10"
+                  className="h-11 bg-white/50 border-slate-200/60 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all duration-300 pr-10"
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   data-testid="input-password"
@@ -106,12 +107,12 @@ export default function AuthPage() {
 
             <Button
               type="submit"
-              className="w-full h-11 text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200"
+              className="w-full h-11 text-base font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 bg-primary/95 hover:bg-primary"
               disabled={isLoading}
               data-testid="button-submit"
             >
               {isLoading ? "Signing in..." : "Sign In"}
-              {!isLoading && <ArrowRight className="ml-2 w-4 h-4" />}
+              {!isLoading && <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />}
             </Button>
 
             <div className="text-center">
@@ -124,7 +125,7 @@ export default function AuthPage() {
           </form>
         </CardContent>
 
-        <CardFooter className="flex flex-col space-y-4 pt-2 pb-8 bg-slate-50/50 rounded-b-xl border-t border-slate-100">
+        <CardFooter className="flex flex-col space-y-4 pt-4 pb-8 bg-slate-50/30 rounded-b-xl border-t border-slate-200/50 backdrop-blur-sm">
           <div className="text-center text-sm text-slate-500">
             New here?{" "}
             <Link href="/signup">
@@ -134,7 +135,7 @@ export default function AuthPage() {
             </Link>
           </div>
 
-          <div className="text-xs text-center text-slate-400 max-w-[280px] mx-auto leading-relaxed">
+          <div className="text-xs text-center text-slate-400 max-w-[280px] mx-auto leading-relaxed opacity-80 hover:opacity-100 transition-opacity">
             Need help? Contact the <span className="font-medium text-slate-500 cursor-pointer hover:underline">IT Service Desk</span> at <br />
             <span className="font-mono text-slate-500">xxx-xxx-xxxx</span>
           </div>

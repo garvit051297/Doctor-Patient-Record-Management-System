@@ -84,10 +84,11 @@ export default function MfaPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <Card className="w-full max-w-[440px] shadow-md border-slate-200 bg-white transition-all">
+    <div className="min-h-screen flex items-center justify-center p-4 relative bg-animated-gradient">
+      <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[bottom_1px_center] pointer-events-none" />
+      <Card className="w-full max-w-[440px] glass-card animate-in slide-in-from-bottom-8 fade-in duration-700 ease-out relative z-10">
         <CardHeader className="space-y-4 flex flex-col items-center text-center pt-10 pb-2">
-          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-2 animate-in zoom-in duration-300 delay-150">
+          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-2 shadow-inner">
             {isSending ? (
               <Mail className="w-8 h-8 text-primary animate-pulse" />
             ) : (
@@ -126,44 +127,43 @@ export default function MfaPage() {
                   onChange={(value) => setOtp(value)}
                   data-testid="input-otp"
                 >
-                  <InputOTPGroup className="gap-2">
-                    {/* Dark border on each OTP slot, thicker when focused */}
-                    <InputOTPSlot index={0} className="h-12 w-10 border-2 border-slate-700 bg-slate-50 focus:bg-white focus:border-primary transition-all duration-200 shadow-sm rounded-md text-slate-900 font-semibold" />
-                    <InputOTPSlot index={1} className="h-12 w-10 border-2 border-slate-700 bg-slate-50 focus:bg-white focus:border-primary transition-all duration-200 shadow-sm rounded-md text-slate-900 font-semibold" />
-                    <InputOTPSlot index={2} className="h-12 w-10 border-2 border-slate-700 bg-slate-50 focus:bg-white focus:border-primary transition-all duration-200 shadow-sm rounded-md text-slate-900 font-semibold" />
+                  <InputOTPGroup className="gap-3">
+                    <InputOTPSlot index={0} className="h-14 w-12 border-2 border-slate-300/60 bg-white/50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all duration-300 shadow-sm rounded-lg text-slate-900 font-bold text-lg" />
+                    <InputOTPSlot index={1} className="h-14 w-12 border-2 border-slate-300/60 bg-white/50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all duration-300 shadow-sm rounded-lg text-slate-900 font-bold text-lg" />
+                    <InputOTPSlot index={2} className="h-14 w-12 border-2 border-slate-300/60 bg-white/50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all duration-300 shadow-sm rounded-lg text-slate-900 font-bold text-lg" />
                   </InputOTPGroup>
                   <div className="w-4" />
-                  <InputOTPGroup className="gap-2">
-                    <InputOTPSlot index={3} className="h-12 w-10 border-2 border-slate-700 bg-slate-50 focus:bg-white focus:border-primary transition-all duration-200 shadow-sm rounded-md text-slate-900 font-semibold" />
-                    <InputOTPSlot index={4} className="h-12 w-10 border-2 border-slate-700 bg-slate-50 focus:bg-white focus:border-primary transition-all duration-200 shadow-sm rounded-md text-slate-900 font-semibold" />
-                    <InputOTPSlot index={5} className="h-12 w-10 border-2 border-slate-700 bg-slate-50 focus:bg-white focus:border-primary transition-all duration-200 shadow-sm rounded-md text-slate-900 font-semibold" />
+                  <InputOTPGroup className="gap-3">
+                    <InputOTPSlot index={3} className="h-14 w-12 border-2 border-slate-300/60 bg-white/50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all duration-300 shadow-sm rounded-lg text-slate-900 font-bold text-lg" />
+                    <InputOTPSlot index={4} className="h-14 w-12 border-2 border-slate-300/60 bg-white/50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all duration-300 shadow-sm rounded-lg text-slate-900 font-bold text-lg" />
+                    <InputOTPSlot index={5} className="h-14 w-12 border-2 border-slate-300/60 bg-white/50 focus:bg-white focus:border-primary focus:ring-4 focus:ring-primary/20 transition-all duration-300 shadow-sm rounded-lg text-slate-900 font-bold text-lg" />
                   </InputOTPGroup>
                 </InputOTP>
               </div>
 
               <Button
                 type="submit"
-                className="w-full h-11 text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200"
+                className="w-full h-12 text-base font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 bg-primary/95 hover:bg-primary group"
                 disabled={isLoading || otp.length !== 6}
                 data-testid="button-verify"
               >
                 {isLoading ? "Verifying..." : "Verify Identity"}
-                {!isLoading && <ArrowRight className="ml-2 w-4 h-4" />}
+                {!isLoading && <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />}
               </Button>
             </form>
           )}
         </CardContent>
 
-        <CardFooter className="flex flex-col space-y-4 pt-2 pb-8 bg-slate-50/50 rounded-b-xl border-t border-slate-100">
+        <CardFooter className="flex flex-col space-y-4 pt-4 pb-8 bg-slate-50/30 rounded-b-xl border-t border-slate-200/50 backdrop-blur-sm">
           {!isSending && (
             <div className="text-center text-sm text-slate-500 animate-in fade-in slide-in-from-bottom-2">
               Didn't receive the code?{" "}
               <button
-                className="font-semibold text-primary hover:text-primary/80 cursor-pointer transition-colors ml-1 inline-flex items-center"
+                className="font-semibold text-primary hover:text-primary/80 cursor-pointer transition-colors ml-1 inline-flex items-center group/btn"
                 onClick={handleResend}
                 data-testid="button-resend"
               >
-                Resend code <RefreshCw className="ml-1 w-3 h-3" />
+                Resend code <RefreshCw className="ml-1 w-3 h-3 group-hover/btn:rotate-180 transition-transform duration-500" />
               </button>
             </div>
           )}
