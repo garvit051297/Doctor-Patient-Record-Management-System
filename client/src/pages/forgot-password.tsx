@@ -84,8 +84,9 @@ export default function ForgotPasswordPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4">
-      <Card className="w-full max-w-[440px] shadow-md border-slate-200 bg-white">
+    <div className="min-h-screen flex items-center justify-center p-4 relative bg-animated-gradient">
+      <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[bottom_1px_center] pointer-events-none" />
+      <Card className="w-full max-w-[440px] glass-card animate-in slide-in-from-bottom-8 fade-in duration-700 ease-out relative z-10">
         <CardHeader className="space-y-4 flex flex-col items-center text-center pt-10 pb-2">
           {getHeaderIcon()}
           <div className="space-y-2">
@@ -104,10 +105,10 @@ export default function ForgotPasswordPage() {
               <button
                 type="button"
                 onClick={() => handleSelectMethod("sms")}
-                className="flex flex-col items-center gap-3 p-6 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer group"
+                className="flex flex-col items-center gap-3 p-6 rounded-xl border-2 border-slate-200/50 bg-white/40 hover:border-primary/50 hover:bg-white/60 hover:-translate-y-1 transition-all duration-300 cursor-pointer group shadow-sm hover:shadow"
                 data-testid="card-sms"
               >
-                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-white border border-slate-200 group-hover:border-primary/30 group-hover:bg-primary/10 transition-all duration-200">
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-white border border-slate-200 group-hover:border-primary/30 group-hover:bg-primary/5 transition-all duration-200 shadow-sm">
                   <Smartphone className="w-6 h-6 text-slate-500 group-hover:text-primary transition-colors duration-200" />
                 </div>
                 <div className="text-center">
@@ -119,7 +120,7 @@ export default function ForgotPasswordPage() {
               <button
                 type="button"
                 onClick={() => handleSelectMethod("email")}
-                className="flex flex-col items-center gap-3 p-6 rounded-xl border-2 border-slate-200 bg-slate-50 hover:border-primary hover:bg-primary/5 transition-all duration-200 cursor-pointer group"
+                className="flex flex-col items-center gap-3 p-6 rounded-xl border-2 border-slate-200/50 bg-white/40 hover:border-primary/50 hover:bg-white/60 hover:-translate-y-1 transition-all duration-300 cursor-pointer group shadow-sm hover:shadow"
                 data-testid="card-email"
               >
                 <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-white border border-slate-200 group-hover:border-primary/30 group-hover:bg-primary/10 transition-all duration-200">
@@ -141,7 +142,7 @@ export default function ForgotPasswordPage() {
                   id="phone"
                   type="tel"
                   placeholder="(555) 555-5555"
-                  className="h-11 bg-slate-50 border-slate-200 focus:bg-white transition-all duration-200"
+                  className="h-11 bg-white/50 border-slate-200/60 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all duration-300"
                   maxLength={14}
                   value={phone}
                   onChange={(e) => setPhone(formatPhoneNumber(e.target.value))}
@@ -151,12 +152,12 @@ export default function ForgotPasswordPage() {
               </div>
               <Button
                 type="submit"
-                className="w-full h-11 text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200"
+                className="w-full h-11 text-base font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 bg-primary/95 hover:bg-primary group"
                 disabled={isLoading}
                 data-testid="button-send-code"
               >
                 {isLoading ? "Sending Code..." : "Send Verification Code"}
-                {!isLoading && <ArrowRight className="ml-2 w-4 h-4" />}
+                {!isLoading && <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />}
               </Button>
               <button
                 type="button"
@@ -177,7 +178,7 @@ export default function ForgotPasswordPage() {
                   id="email"
                   type="email"
                   placeholder="name@example.com"
-                  className="h-11 bg-slate-50 border-slate-200 focus:bg-white transition-all duration-200"
+                  className="h-11 bg-white/50 border-slate-200/60 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all duration-300"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   required
@@ -186,12 +187,12 @@ export default function ForgotPasswordPage() {
               </div>
               <Button
                 type="submit"
-                className="w-full h-11 text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200"
+                className="w-full h-11 text-base font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 bg-primary/95 hover:bg-primary group"
                 disabled={isLoading}
                 data-testid="button-send-link"
               >
                 {isLoading ? "Sending Link..." : "Send Reset Link"}
-                {!isLoading && <ArrowRight className="ml-2 w-4 h-4" />}
+                {!isLoading && <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />}
               </Button>
               <button
                 type="button"
@@ -221,11 +222,11 @@ export default function ForgotPasswordPage() {
           )}
         </CardContent>
 
-        <CardFooter className="flex flex-col space-y-4 pt-2 pb-8 bg-slate-50/50 rounded-b-xl border-t border-slate-100">
+        <CardFooter className="flex flex-col space-y-4 pt-4 pb-8 bg-slate-50/30 rounded-b-xl border-t border-slate-200/50 backdrop-blur-sm">
           <div className="text-center">
             <Link href="/login">
-              <span className="text-sm font-medium text-slate-500 hover:text-slate-700 cursor-pointer transition-colors inline-flex items-center" data-testid="link-back-to-signin">
-                <ArrowLeft className="mr-2 w-4 h-4" /> Back to sign in
+              <span className="text-sm font-medium text-slate-500 hover:text-slate-700 cursor-pointer transition-colors inline-flex items-center group" data-testid="link-back-to-signin">
+                <ArrowLeft className="mr-2 w-4 h-4 group-hover:-translate-x-1 transition-transform" /> Back to sign in
               </span>
             </Link>
           </div>

@@ -86,10 +86,11 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 py-8">
-      <Card className="w-full max-w-[500px] shadow-md border-slate-200 bg-white">
+    <div className="min-h-screen flex items-center justify-center p-4 py-8 relative bg-animated-gradient">
+      <div className="absolute inset-0 bg-grid-slate-900/[0.04] bg-[bottom_1px_center] pointer-events-none" />
+      <Card className="w-full max-w-[500px] glass-card animate-in slide-in-from-bottom-8 fade-in duration-700 ease-out relative z-10">
         <CardHeader className="space-y-4 flex flex-col items-center text-center pt-8 pb-2">
-          <div className="w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center mb-2">
+          <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-2 shadow-inner transform hover:scale-105 transition-transform duration-500">
             <UserPlus className="w-8 h-8 text-primary" />
           </div>
           <div className="space-y-2">
@@ -103,22 +104,22 @@ export default function SignupPage() {
             <div className="grid grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="firstName" className="text-slate-600 font-medium">First Name</Label>
-                <Input id="firstName" placeholder="John" className="bg-slate-50 border-slate-200 focus:bg-white" value={formData.firstName} onChange={handleChange} required maxLength={50} />
+                <Input id="firstName" placeholder="John" className="bg-white/50 border-slate-200/60 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all duration-300" value={formData.firstName} onChange={handleChange} required maxLength={50} />
               </div>
               <div className="space-y-2">
                 <Label htmlFor="lastName" className="text-slate-600 font-medium">Last Name</Label>
-                <Input id="lastName" placeholder="Doe" className="bg-slate-50 border-slate-200 focus:bg-white" value={formData.lastName} onChange={handleChange} required maxLength={50} />
+                <Input id="lastName" placeholder="Doe" className="bg-white/50 border-slate-200/60 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all duration-300" value={formData.lastName} onChange={handleChange} required maxLength={50} />
               </div>
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="email" className="text-slate-600 font-medium">Email Address</Label>
-              <Input id="email" type="email" placeholder="john.doe@example.com" className="bg-slate-50 border-slate-200 focus:bg-white" value={formData.email} onChange={handleChange} required maxLength={100} />
+              <Input id="email" type="email" placeholder="john.doe@example.com" className="bg-white/50 border-slate-200/60 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all duration-300" value={formData.email} onChange={handleChange} required maxLength={100} />
             </div>
 
             <div className="space-y-2">
               <Label htmlFor="phone" className="text-slate-600 font-medium">Mobile Number</Label>
-              <Input id="phone" type="tel" placeholder="(555) 555-5555" className="bg-slate-50 border-slate-200 focus:bg-white" value={formData.phone} onChange={handleChange} required maxLength={14} />
+              <Input id="phone" type="tel" placeholder="(555) 555-5555" className="bg-white/50 border-slate-200/60 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all duration-300" value={formData.phone} onChange={handleChange} required maxLength={14} />
             </div>
 
             <div className="space-y-2">
@@ -169,7 +170,7 @@ export default function SignupPage() {
 
             <div className="space-y-2">
               <Label htmlFor="username" className="text-slate-600 font-medium">Username</Label>
-              <Input id="username" placeholder="johndoe123" className="bg-slate-50 border-slate-200 focus:bg-white" value={formData.username} onChange={handleChange} required />
+              <Input id="username" placeholder="johndoe123" className="bg-white/50 border-slate-200/60 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all duration-300" value={formData.username} onChange={handleChange} required />
             </div>
 
             <div className="space-y-3">
@@ -185,7 +186,7 @@ export default function SignupPage() {
                 </div>
                 <div className="space-y-2">
                   <Label htmlFor="confirmPassword" className="text-slate-600 font-medium">Confirm</Label>
-                  <Input id="confirmPassword" type={showPassword ? "text" : "password"} className="bg-slate-50 border-slate-200 focus:bg-white" value={formData.confirmPassword} onChange={handleChange} required />
+                  <Input id="confirmPassword" type={showPassword ? "text" : "password"} className="bg-white/50 border-slate-200/60 focus:bg-white focus:ring-2 focus:ring-primary/20 transition-all duration-300" value={formData.confirmPassword} onChange={handleChange} required />
                 </div>
               </div>
 
@@ -208,14 +209,14 @@ export default function SignupPage() {
               )}
             </div>
 
-            <Button type="submit" className="w-full h-11 text-base font-semibold shadow-md hover:shadow-lg transition-all duration-200 mt-2" disabled={isLoading}>
+            <Button type="submit" className="w-full h-11 text-base font-semibold shadow-lg hover:shadow-xl hover:-translate-y-0.5 transition-all duration-300 bg-primary/95 hover:bg-primary mt-4 group" disabled={isLoading}>
               {isLoading ? "Creating Account..." : "Create Account"}
-              {!isLoading && <ArrowRight className="ml-2 w-4 h-4" />}
+              {!isLoading && <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />}
             </Button>
           </form>
         </CardContent>
 
-        <CardFooter className="flex flex-col space-y-4 pt-2 pb-8 bg-slate-50/50 rounded-b-xl border-t border-slate-100">
+        <CardFooter className="flex flex-col space-y-4 pt-4 pb-8 bg-slate-50/30 rounded-b-xl border-t border-slate-200/50 backdrop-blur-sm">
           <div className="text-center text-sm text-slate-500">
             Already have an account?{" "}
             <Link href="/login">
